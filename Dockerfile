@@ -2,21 +2,14 @@ FROM centos:6
 
 MAINTAINER houpeng  "xcf-hp@foxmail.com"
 
-RUN echo "设置163的yum源" && \
-	mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-
-ADD http://mirrors.163.com/.help/CentOS6-Base-163.repo /etc/yum.repos.d/
-
-RUN yum clean all && yum makecache
-
 #安装mysql5
 RUN echo "开始安装mysql" && yum install -y mysql-server mysql
 
 RUN echo "启动mysql并设置root密码" && \
 	/etc/init.d/mysqld start && \
-    mysql -e "grant all privileges on *.* to 'root'@'%' identified by '8805623';"&&\
-    mysql -e "grant all privileges on *.* to 'root'@'localhost' identified by '8805623';"&&\
-    mysql -u root -p8805623 -e "show databases;"
+    mysql -e "grant all privileges on *.* to 'root'@'%' identified by '123456';"&&\
+    mysql -e "grant all privileges on *.* to 'root'@'localhost' identified by '123456';"&&\
+    mysql -u root -p123456 -e "show databases;"
 
 EXPOSE 3306
 
