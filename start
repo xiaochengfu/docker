@@ -1,0 +1,5 @@
+#!/bin/bash
+exec=`docker run -itd --name=lnmp-v1 -v /data/docker/mysql/:/var/lib/mysql -v /data/docker/nginx/wwwroot/:/usr/local/nginx/html -v /data/docker/nginx/vhost/:/usr/local/nginx/conf/vhost -p 63306:3306 -p 680:80  lnmp:v1 bash`
+echo "容器创建成功，并已成功启动,运行状态如下："
+ps=`docker ps|grep lnmp`
+echo $ps
