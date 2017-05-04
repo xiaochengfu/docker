@@ -1,6 +1,8 @@
 创建镜像：
 在Dockerfile所在目录下执行：
-docker build -t lnmp:v1 .
+```
+docker build -t lnmp:v1 .  //lnmp:v1为自定义的镜像名称：版本号
+```
 
 也可以执行如下命令，直接获取镜像包：
 ```
