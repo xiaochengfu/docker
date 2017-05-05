@@ -35,6 +35,7 @@ docker exec -it 容器id bash
 service mysqld start
 #默认密码为空，进入后可设置超级权限
 grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;
+grant all privileges on *.* to 'root'@'localhost' identified by '123456' with grant option;
 flush privileges;
 #即可远程登陆
 
