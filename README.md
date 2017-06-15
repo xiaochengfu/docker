@@ -55,7 +55,38 @@ service redis start
 #支持swoole
 ```
 
-nginx的配置文件，在宿主机的/data/docker/nginx下，vhost下的目录，可以直接放置其他server配置
+nginx的配置文件，在宿主机的/data/docker/nginx下，vhost下的目录，可以直接放置其他server配置,示例如下：
+
+```
+server {
+    listen       80;
+    server_name www.s1.com ;
+    index index.html index.htm index.php;
+    root        html/yii2;
+    #charset koi8-r;
+
+    #access_log  logs/host.access.log  main;
+
+    location / {
+        if (!-e $request_filename) {
+                        rewrite  ^(.*)$  /index.php  last;
+                }
+    }
+
+    error_page  404              /404.html;
+
+    location ~ \.php$ {
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+
+    location ~ /\.ht {
+       deny  all;
+    }
+}
+```
 
 网站的根目录，在宿主机的/data/docker/nginx/wwwroot 下
 
