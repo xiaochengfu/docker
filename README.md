@@ -14,7 +14,7 @@ docker build -t hp/php .
 ```
 
 ### 使用场景一
-需要使用ngin来做虚拟域名，nginx和php关联使用
+需要使用nginx来做虚拟域名，nginx和php关联使用
 
 #### 1.先启动php
 进入php目录！！！
@@ -51,7 +51,19 @@ docker run -itd --rm -p 8000:8000 -v $PWD:/home/wwwroot:cached hp/php php artisa
 docker run -itd --rm -p 8000:8000 -v $PWD:/home/wwwroot:cached hp/php php think run --host=0.0.0.0
 ```
 
+### 使用场景三
+直接使用docker-compose启动
+
+进入lnmp目录
+```
+docker-compose up
+```
+
+
+
+
 #### 画重点
 
 a. `你本地所有项目的所在目录` 要改成你自己的项目所在目录
+
 b. `-v 你本地所有项目的所在目录:/home/wwwroot:cached`命令末尾的`:cached`指的是使用容器内缓存，提高速度
