@@ -5,7 +5,7 @@ services:
         image: ${NGINX_IMAGE}
         volumes:
            - ${NGINX_VOLUMNE_CONF}:/etc/nginx/nginx.conf
-           - ${NGINX_VOLUMNE_VHOST}:/etc/nginx/conf.d/
+           - ${NGINX_VOLUMNE_VHOST}:/etc/nginx/conf.d
            - ${NGINX_PROJECT}:/home/wwwroot:cached
         restart: always
         ports:
@@ -18,8 +18,8 @@ services:
            - ${PHP_VOLUMNE_PHPINI}:/usr/local/etc/php/php.ini
            - ${PHP_VOLUME_PROJECT}:/home/wwwroot:cached
         restart: always
-        ports:
-           - 9000:9000
+        # ports:
+        #    - 9000:9000
 
 
 
