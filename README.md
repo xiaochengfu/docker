@@ -14,7 +14,12 @@ docker build -t hp/php .
 ```
 
 ### 使用场景一
+
 直接使用docker-compose启动
+#### 启动前
+
+a.修改lnmp目录下的.env文件，NGINX_PROJECT和PHP_VOLUME_PROJECT指的是所有项目的所在路径，需要改成你自己的本地路径
+#### 启动
 
 进入lnmp目录
 ```
@@ -25,11 +30,10 @@ docker-compose up
 浏览器中输入`127.0.0.1`
 
 #### 2.检查php文件是否正常解析运行
-a.修改lnmp目录下的.env文件，NGINX_PROJECT和PHP_VOLUME_PROJECT指的是所有项目的所在路径，需要改成你自己的本地路径
 
-b.修改你本机的host地址，添加如下：
+a.修改你本机的host地址，添加如下：
 `127.0.0.1  demo.local.com`
-c.浏览器中输入
+b.浏览器中输入
 `demo.local.com`
 
 > htdocs目录模拟的是你本地所有项目的所在目录，方便你测试
