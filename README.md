@@ -33,6 +33,7 @@ docker-compose up
 
 a.修改你本机的host地址，添加如下：
 `127.0.0.1  demo.local.com`
+
 b.浏览器中输入
 `demo.local.com`
 
