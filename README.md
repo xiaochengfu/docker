@@ -1,14 +1,14 @@
 > 本项目属于个人定制自己的本地开发环境，配置上倾向于个人习惯，仅供学习参考
 ### 构建镜像
-1.构建nginx
+1.构建nginx
 
-进入nginx目录
+进入nginx目录
 ```
 docker build -t hp/nginx .
 ```
 2.构建php
 
-进入php目录
+进入php目录
 ```
 docker build -t hp/php .
 ```
@@ -21,7 +21,7 @@ docker build -t hp/php .
 docker-compose up
 ```
 > 验证是否启动
-#### 1.检查nginx是否正常
+#### 1.检查nginx是否正常
 浏览器中输入`127.0.0.1`
 
 #### 2.检查php文件是否正常解析运行
