@@ -20,6 +20,8 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
     libmcrypt-dev \
     libpng-dev \
     unixodbc-dev \
+    procps \
+    lsof \
     gcc g++ make autoconf libc-dev pkg-config \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd 
