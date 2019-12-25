@@ -22,9 +22,12 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
     unixodbc-dev \
     procps \
     lsof \
+    git \
+    zip \
+    unzip \
     gcc g++ make autoconf libc-dev pkg-config \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd 
+    && docker-php-ext-install -j$(nproc) gd pcntl 
 
 # 安装redis和pod_mysql扩展
 COPY ext/redis-${REDIS_VERSION}.tgz /opt/redis.tgz
