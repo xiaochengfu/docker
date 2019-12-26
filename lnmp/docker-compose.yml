@@ -20,8 +20,21 @@ services:
         restart: always
         # ports:
         #    - 9000:9000
-
-
-
-
-
+    mysql:
+        image: mysql:5.7
+        volumes:
+            - ${MYSQL_VOLUME_DATA}:/var/lib/mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+        ports:
+            - 3306:3306
+    redis:
+        image: redis
+        container_name: redis
+        restart: always
+        command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
+        ports:
+             - 6379:6379
+        volumes:
+             - ${REDIS_VOLUME_DATA}:/data
