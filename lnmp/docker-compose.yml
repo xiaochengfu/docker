@@ -18,12 +18,16 @@ services:
            - ${PHP_VOLUMNE_PHPINI}:/usr/local/etc/php/php.ini
            - ${PHP_VOLUME_PROJECT}:/home/wwwroot:cached
         restart: always
+        depends_on:
+           - mysql
+           - redis
         # ports:
         #    - 9000:9000
     mysql:
         image: mysql:5.7
         volumes:
             - ${MYSQL_VOLUME_DATA}:/var/lib/mysql
+            - ${MYSQL_VOLUME_CONF}:/etc/mysql/conf.d
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
@@ -31,7 +35,6 @@ services:
             - 3306:3306
     redis:
         image: redis
-        container_name: redis
         restart: always
         command: redis-server --requirepass ${REDIS_PASSWORD} --appendonly yes
         ports:
