@@ -1,0 +1,20 @@
+{
+    "name": "xiaochengfu",
+    "homepage": "http://composer.xiaochengfu.com",
+    "repositories": [{
+        "type": "vcs",
+        "url": "root@ip:packagist/helper.git"
+    }],
+    "archive": {
+        "directory": "dist",
+        "format": "tar",
+        "skip-dev": false,
+        "prefix-url": "http://composer.xiaochengfu.com"
+    },
+    "require-all": true,
+    "require-dependencies": true,
+    "require-dev-dependencies": true,
+    "config": {
+        "secure-http": false
+    }
+}

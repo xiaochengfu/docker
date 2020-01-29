@@ -32,6 +32,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
 # 安装redis和pod_mysql扩展
 COPY ext/redis-${REDIS_VERSION}.tgz /opt/redis.tgz
 RUN docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install mysqli \
     && pecl install /opt/redis.tgz \
     && docker-php-ext-enable redis 
 
