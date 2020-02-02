@@ -4,6 +4,7 @@ FROM php:7.4-fpm
 ENV REDIS_VERSION=5.1.0
 ENV SWOOLE_VERSION=4.4.12
 ENV COMPOSER_VERSION=1.9.1
+ENV PHPNSQ_VERSION=3.5.0
 
 COPY conf/sources.list /opt/sources.list
 
@@ -25,6 +26,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
     git \
     zip \
     unzip \
+    libevent-dev \
     gcc g++ make autoconf libc-dev pkg-config \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd pcntl 
@@ -35,6 +37,11 @@ RUN docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mysqli \
     && pecl install /opt/redis.tgz \
     && docker-php-ext-enable redis 
+
+#安装php-nsq client
+COPY ext/nsq-${PHPNSQ_VERSION}.tgz /opt/nsq.tgz
+RUN pecl install /opt/nsq.tgz \
+    && docker-php-ext-enable nsq 
 
 # 安装swoole
 COPY ext/swoole-${SWOOLE_VERSION}.tgz /opt/swoole.tgz
@@ -54,4 +61,4 @@ RUN usermod -u 1000 www-data
 EXPOSE 9000
 
 
-# export DOCKER_BUILDKIT=1 加在docker build前，可获取实时进度
+# export DOCKER_BUILDKIT=1 加在build前，可获取实时进度
