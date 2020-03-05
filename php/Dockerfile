@@ -20,6 +20,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
     libjpeg62-turbo-dev \
     libmcrypt-dev \
     libpng-dev \
+    libzip-dev \
     unixodbc-dev \
     procps \
     lsof \
@@ -43,6 +44,11 @@ COPY ext/nsq-${PHPNSQ_VERSION}.tgz /opt/nsq.tgz
 RUN pecl install /opt/nsq.tgz \
     && docker-php-ext-enable nsq 
 
+# 安装Excel所需扩展
+RUN docker-php-ext-install bcmath \
+    && docker-php-ext-install sockets \
+    && docker-php-ext-install zip
+
 # 安装swoole
 COPY ext/swoole-${SWOOLE_VERSION}.tgz /opt/swoole.tgz
 RUN pecl install /opt/swoole.tgz \
@@ -62,3 +68,5 @@ EXPOSE 9000
 
 
 # export DOCKER_BUILDKIT=1 加在build前，可获取实时进度
+# 可动态添加的php内置扩展:
+# bcmath bz2 calendar ctype curl dba dom enchant exif ffi fileinfo filter ftp gd gettext gmp hash iconv imap intl json ldap mbstring mysqli oci8 odbc opcache pcntl pdo pdo_dblib pdo_firebird pdo_mysql pdo_oci pdo_odbc pdo_pgsql pdo_sqlite pgsql phar posix pspell readlinereflection session shmop simplexml snmp soap sockets sodium spl standard sysvmsg sysvsem sysvshm tidy tokenizer xml xmlreader xmlrpc xmlwriter xsl zend_test zip
