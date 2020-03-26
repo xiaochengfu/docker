@@ -34,6 +34,11 @@ docker run -it --rm hp/php composer -V
 docker run -it --rm -p 9000:9000 -v $PWD:/home/wwwroot  hp/php php -S 0.0.0.0:9000
 ```
 
+#### (5).利用.ssh拉取composer包
+```
+ docker run -it --rm -v $PWD:/home/wwwroot -v ~/.ssh:/root/.ssh hp/php composer install
+```
+
 > ### 实际开发应用
 
 #### (1).启动laravel 服务
