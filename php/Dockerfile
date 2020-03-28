@@ -5,6 +5,7 @@ ENV REDIS_VERSION=5.1.0
 ENV SWOOLE_VERSION=4.4.12
 ENV COMPOSER_VERSION=1.9.1
 ENV PHPNSQ_VERSION=3.5.0
+ENV MONGO_VERSION=1.7.4
 
 COPY conf/sources.list /opt/sources.list
 
@@ -38,6 +39,11 @@ RUN docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mysqli \
     && pecl install /opt/redis.tgz \
     && docker-php-ext-enable redis 
+
+# 安装mongodb
+COPY ext/mongodb-${MONGO_VERSION}.tgz /opt/mongodb.tgz
+RUN pecl install /opt/mongodb.tgz \
+    && docker-php-ext-enable mongodb
 
 #安装php-nsq client
 COPY ext/nsq-${PHPNSQ_VERSION}.tgz /opt/nsq.tgz
