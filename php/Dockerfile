@@ -29,6 +29,8 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
     zip \
     unzip \
     libevent-dev \
+    openssl \
+    libssl-dev \
     gcc g++ make autoconf libc-dev pkg-config \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd pcntl 
